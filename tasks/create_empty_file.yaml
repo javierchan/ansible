@@ -6,3 +6,5 @@
     file:
       path: "/home/javierchan/test.sh"
       state: touch
+    vars:
+      ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
