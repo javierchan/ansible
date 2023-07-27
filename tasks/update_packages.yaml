@@ -7,3 +7,6 @@
       apt: update_cache=yes force_apt_get=yes cache_valid_time=3600 upgrade=dist
   vars:
       ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+      ansible_user: 'javierchan'
+      ansible_become: 'yes'
+      ansible_become_method: 'sudo'
