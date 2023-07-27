@@ -4,6 +4,6 @@
   become: true
   tasks:
     - name: update apt packages  
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600 upgrade=dist
   vars:
       ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
