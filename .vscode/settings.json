@@ -1,5 +1,6 @@
 {
     "yaml.schemas": {
         "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks": "file:///Users/javierchan/Documents/GitHub/ansible/tasks/create_empty_file.yaml"
-    }
+    },
+    "ansible.python.interpreterPath": "/usr/bin/python3"
 }
