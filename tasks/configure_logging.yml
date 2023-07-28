@@ -1,23 +1,51 @@
 ---
 
-- name: Configure syslog to send logs over UDP to 10.0.10.10
-  hosts: ubuntu_servers
+- name: Configure rsyslog to send logs over UDP
+  hosts: all
   become: yes
 
   tasks:
     - name: Install rsyslog
       apt:
         name: rsyslog
-        state: present
+        state: latest
 
     - name: Configure rsyslog to send logs over UDP
       lineinfile:
         path: /etc/rsyslog.conf
-        regexp: '^\\*\\.\\*\\s+@'
-        line: '*.* @10.0.10.10:514'
-        backup: yes
+        line: "*.* @10.0.10.10:514"
       notify:
         - restart rsyslog
+
+  handlers:
+    - name: restart rsyslog
+      service:
+        name: rsyslog
+        state: restarted
+
+- name: Set disk queue for rsyslog when server is down
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Create rsyslog disk queue directory
+      file:
+        path: /var/spool/rsyslog
+        state: directory
+        mode: '0755'
+
+    - name: Configure disk queue for rsyslog
+      lineinfile:
+        path: /etc/rsyslog.conf
+        line: "$WorkDirectory /var/spool/rsyslog"
+      notify:
+        - restart rsyslog
+
+    - name: Ensure rsyslog service is enabled and running
+      service:
+        name: rsyslog
+        state: started
+        enabled: yes
 
   handlers:
     - name: restart rsyslog
