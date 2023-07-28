@@ -1,0 +1,11 @@
+---
+
+- hosts: all
+- name: Configure timezone to America/Mexico_City
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+    - name: Set timezone to America/Mexico_City
+      timezone:
+        name: America/Mexico_City

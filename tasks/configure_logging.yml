@@ -1,0 +1,23 @@
+---
+- name: Configure log forwarding to central log server
+  hosts: ubuntu_servers
+  become: yes
+
+  tasks:
+    - name: Install rsyslog
+      apt:
+        name: rsyslog
+        state: present
+
+    - name: Configure rsyslog to forward logs
+      lineinfile:
+        path: /etc/rsyslog.conf
+        line: "*.* @@10.0.10.10:514"
+      notify:
+        - restart rsyslog
+
+  handlers:
+    - name: restart rsyslog
+      service:
+        name: rsyslog
+        state: restarted
