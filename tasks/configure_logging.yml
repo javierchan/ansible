@@ -1,6 +1,7 @@
 ---
 
 - name: Configure log forwarding to central log server
+- hosts: all
   become: yes
 
   tasks:
