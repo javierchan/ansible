@@ -4,11 +4,11 @@
   hosts: all
   become: yes
 
-  tasks:
-    - name: Install rsyslog
-      apt:
-        name: rsyslog
-        state: latest
+  #tasks:
+  #  - name: Install rsyslog
+  #    apt:
+  #      name: rsyslog
+  #      state: latest
 
     - name: Configure rsyslog to send logs over UDP
       lineinfile:
