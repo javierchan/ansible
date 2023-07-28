@@ -1,6 +1,6 @@
 ---
+
 - name: Configure log forwarding to central log server
-  hosts: ubuntu_servers
   become: yes
 
   tasks:
