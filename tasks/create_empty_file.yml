@@ -1,4 +1,4 @@
----
+--- #tests
 
 - hosts: all
   tasks:
