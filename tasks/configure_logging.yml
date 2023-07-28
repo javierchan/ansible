@@ -1,7 +1,7 @@
 ---
 
-- name: Configure log forwarding to central log server
-- hosts: all
+- name: Configure syslog to send logs over UDP to 10.0.10.10
+  hosts: ubuntu_servers
   become: yes
 
   tasks:
@@ -10,10 +10,12 @@
         name: rsyslog
         state: present
 
-    - name: Configure rsyslog to forward logs
+    - name: Configure rsyslog to send logs over UDP
       lineinfile:
         path: /etc/rsyslog.conf
-        line: "*.* @@10.0.10.10:514"
+        regexp: '^\\*\\.\\*\\s+@'
+        line: '*.* @10.0.10.10:514'
+        backup: yes
       notify:
         - restart rsyslog
 
