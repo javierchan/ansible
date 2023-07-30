@@ -26,6 +26,7 @@
 
 - name: Set disk queue for rsyslog when server is down
   hosts: all
+  user: javierchan
   become: yes
 
   tasks:
