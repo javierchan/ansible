@@ -22,8 +22,7 @@
 - name: Set disk queue for rsyslog when server is down
   hosts: all
   user: javierchan
-  become_user: javierchan
-  become_method: sudo
+  become: yes
 
   tasks:
     - name: Create rsyslog disk queue directory
