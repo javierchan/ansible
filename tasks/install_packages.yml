@@ -2,8 +2,6 @@
 - name: Install Docker on Ubuntu
   hosts: all  # Replace with the target host where you want to install Docker
   become: yes             # This allows the playbook to escalate privileges (sudo)
-  become_user: javierchan
-  become_method: sudo
   tasks:
     - name: Install required packages
       apt:
