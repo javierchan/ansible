@@ -2,8 +2,8 @@
 
 - name: Configure rsyslog to send logs over UDP
   hosts: all
-  user: javierchan
   become: yes
+  become_user: javierchan
   
   tasks:
   #  - name: Install rsyslog
@@ -27,7 +27,7 @@
 - name: Set disk queue for rsyslog when server is down
   hosts: all
   user: javierchan
-  become: yes
+  become_user: javierchan
 
   tasks:
     - name: Create rsyslog disk queue directory
