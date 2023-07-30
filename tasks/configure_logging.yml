@@ -2,8 +2,9 @@
 
 - name: Configure rsyslog to send logs over UDP
   hosts: all
+  user: javierchan
   become: yes
-
+  
   tasks:
   #  - name: Install rsyslog
   #    apt:
