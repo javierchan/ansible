@@ -4,6 +4,7 @@
   hosts: all
   become: yes
   become_user: javierchan
+  become_method: sudo
   
   tasks:
   #  - name: Install rsyslog
@@ -28,6 +29,7 @@
   hosts: all
   user: javierchan
   become_user: javierchan
+  become_method: sudo
 
   tasks:
     - name: Create rsyslog disk queue directory
