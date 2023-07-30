@@ -2,7 +2,7 @@
 - name: set environment demo
   hosts: all
   gather_facts: false
-  become: true
+  become: yes
   vars:
     os_environment:
       - key: EDITOR

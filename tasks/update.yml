@@ -2,7 +2,8 @@
 
 - name: Update Linux packages using apt
   hosts: all
-  become: true
+  become: yes
+  become_user: javierchan
   tasks:
 
     - name: Remove apt lock file
