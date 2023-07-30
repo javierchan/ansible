@@ -1,11 +1,36 @@
-- name: Update package cache so Docker packages install will succeed
-  hosts: all
-  become: yes
+---
+- name: Install Docker on Ubuntu
+  hosts: all  # Replace with the target host where you want to install Docker
+  become: yes             # This allows the playbook to escalate privileges (sudo)
   become_user: javierchan
   become_method: sudo
   tasks:
-    - name: Update package cache
-      pkg:
-       - docker-ce
-       - docker-ce-cli
-       - containerd.io
+    - name: Install required packages
+      apt:
+        name: ['apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+        state: present
+
+    - name: Add Docker APT key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+        state: present
+
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: latest
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
