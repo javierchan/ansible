@@ -1,6 +1,6 @@
 ---
 - name: Update Linux packages using apt
-  hosts: debian_servers
+  hosts: all
   become: yes
   tasks:
     - name: Update package cache
