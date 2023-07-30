@@ -4,8 +4,8 @@
   become_user: javierchan
   become_method: sudo
   tasks:
-    update_cache: yes
-    pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
+    - name: Update package cache
+      pkg:
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io
