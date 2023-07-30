@@ -1,0 +1,11 @@
+- name: Update package cache so Docker packages install will succeed
+  hosts: all
+  become: yes
+  become_user: javierchan
+  become_method: sudo
+  tasks:
+    update_cache: yes
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
