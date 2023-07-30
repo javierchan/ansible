@@ -3,7 +3,7 @@
   become: yes
   become_user: javierchan
   become_method: sudo
-  block:
+  tasks:
     - name: Set all periodic update options to 0
       replace:
         path: /etc/apt/apt.conf.d/10periodic
