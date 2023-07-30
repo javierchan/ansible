@@ -2,7 +2,7 @@
 
 - name: Update Linux packages using apt
   hosts: all
-  become: yes
+  become: true
   tasks:
 
     - name: Remove apt lock file
