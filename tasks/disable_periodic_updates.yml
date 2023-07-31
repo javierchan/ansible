@@ -1,8 +1,9 @@
+---
+
 - name: Disable periodic updates
   hosts: all
   become: yes
-#  become_user: javierchan
-  become_method: sudo
+
   tasks:
     - name: Set all periodic update options to 0
       replace:
