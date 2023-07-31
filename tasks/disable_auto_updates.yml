@@ -1,0 +1,28 @@
+---
+
+#disable_auto_updates_ubuntu_linux
+
+- name: Disable automatic updates on Ubuntu
+  hosts: your_target_host
+  become: yes
+
+  tasks:
+    - name: Disable unattended-upgrades package
+      apt:
+        name: unattended-upgrades
+        state: absent
+
+    - name: Disable apt-daily.timer
+      systemd:
+        name: apt-daily.timer
+        state: stopped
+        enabled: no
+
+    - name: Disable apt-daily-upgrade.timer
+      systemd:
+        name: apt-daily-upgrade.timer
+        state: stopped
+        enabled: no
+
+#1. Remove the unattended-upgrades package, which is responsible for handling automatic updates on Ubuntu.
+#2. Stop and disable the apt-daily.timer and apt-daily-upgrade.timer services, which are responsible for scheduling daily package updates.
