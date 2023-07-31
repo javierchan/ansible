@@ -3,7 +3,7 @@
 #disable_auto_updates_ubuntu_linux
 
 - name: Disable automatic updates on Ubuntu
-  hosts: your_target_host
+  hosts: all
   become: yes
 
   tasks:
