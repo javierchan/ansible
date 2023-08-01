@@ -1,6 +1,9 @@
 ---
+
+#Ansible playbook that performs various system cleaning tasks on Ubuntu Linux, including removing unnecessary packages, cleaning the APT cache, removing old kernels, cleaning thumbnail cache, and clearing systemd journal logs:
+
 - name: Clean Ubuntu system
-  hosts: all
+  hosts: your_target_host
   become: yes
 
   tasks:
@@ -17,6 +20,9 @@
       apt:
         autoclean: yes
 
+    - name: Remove old kernels
+      shell: dpkg -l | awk '/linux-image-*/ {print $2}' | grep -v $(uname -r) | xargs sudo apt-get -y purge
+
     - name: Clean thumbnail cache
       file:
         path: ~/.cache/thumbnails
@@ -29,16 +35,11 @@
         name: systemd-journald
         state: restarted
 
-    - name: Reboot the server if necessary
-      reboot:
-        test_command: uptime
-        reboot_timeout: 300
-
-
 #This playbook will perform the following tasks:
 
 #1. Update the APT cache to ensure the package information is up-to-date.
 #2. Remove unnecessary packages using apt autoremove.
 #3. Clean the APT cache using apt autoclean.
-#4. Remove the thumbnail cache for the current user (if applicable).
-#5. Clear systemd journal logs to free up disk space.
+#4. Remove old kernels to free up disk space (This is optional, and you should consider the implications of removing old kernels).
+#5. Remove the thumbnail cache for the current user (if applicable).
+#6. Clear systemd journal logs to free up disk space.
