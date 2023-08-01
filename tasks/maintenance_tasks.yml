@@ -33,3 +33,12 @@
       reboot:
         test_command: uptime
         reboot_timeout: 300
+
+
+#This playbook will perform the following tasks:
+
+#1. Update the APT cache to ensure the package information is up-to-date.
+#2. Remove unnecessary packages using apt autoremove.
+#3. Clean the APT cache using apt autoclean.
+#4. Remove the thumbnail cache for the current user (if applicable).
+#5. Clear systemd journal logs to free up disk space.
