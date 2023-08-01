@@ -51,5 +51,4 @@
 #4. Remove old kernels to free up disk space (This is optional, and you should consider the implications of removing old kernels).
 #5. Remove the thumbnail cache for the current user (if applicable).
 #6. Clear systemd journal logs to free up disk space.
-
 #7. Schedule a reboot with a timeout of 600 seconds (10 minutes) and display a message indicating the reboot has been initiated by Ansible. The async, poll, and ignore_errors options are used to avoid the playbook from waiting for the reboot to complete.
