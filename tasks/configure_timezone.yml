@@ -1,4 +1,5 @@
 ---
+# Ubuntu linux common configurations
 
 - name: Configure timezone to America/Mexico_City
 - hosts: all
