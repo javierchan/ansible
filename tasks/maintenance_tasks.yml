@@ -28,3 +28,8 @@
       systemd:
         name: systemd-journald
         state: restarted
+
+    - name: Reboot the server if necessary
+      reboot:
+        test_command: uptime
+        reboot_timeout: 300
