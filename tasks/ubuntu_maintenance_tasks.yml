@@ -35,6 +35,37 @@
         name: systemd-journald
         state: restarted
 
+    - name: Schedule a reboot
+      reboot:
+        reboot_timeout: 600
+        msg: "Reboot initiated by Ansible. The system will reboot in 1 minute."
+      async: 0
+      poll: 0
+      ignore_errors: yes
+
+    - name: Wait for the reboot to complete
+      local_action: wait_for
+      timeout: 300
+      delay: 10
+      #host: "{{ inventory_hostname }}"
+      port: 22
+      state: started
+      become: yes
+      delegate_to: 127.0.0.1
+      ignore_errors: yes
+
+    - name: Wait for the SSH service to become available
+      local_action: wait_for
+      timeout: 300
+      delay: 10
+      #host: "{{ inventory_hostname }}"
+      port: 22
+      state: started
+      become: yes
+      delegate_to: 127.0.0.1
+      ignore_errors: yes
+
+
 #This playbook will perform the following tasks:
 
 #1. Update the APT cache to ensure the package information is up-to-date.
@@ -43,3 +74,6 @@
 #4. Remove old kernels to free up disk space (This is optional, and you should consider the implications of removing old kernels).
 #5. Remove the thumbnail cache for the current user (if applicable).
 #6. Clear systemd journal logs to free up disk space.
+#7. Schedule a reboot with a timeout of 600 seconds (10 minutes) and display a message indicating the reboot has been initiated by Ansible. The async, poll, and ignore_errors options are used to avoid the playbook from waiting for the reboot to complete.
+#8. Wait for the reboot to complete using the wait_for module. The playbook will wait for a maximum of 300 seconds (5 minutes) and check every 10 seconds if the SSH port (22) is responding.
+#9. Wait for the SSH service to become available after the reboot using the wait_for module again, following the same pattern as in the previous step.
