@@ -7,6 +7,11 @@
   become: yes
 
   tasks:
+    - name: Remove apt lock file
+      file:
+        state: absent
+        path: "/var/lib/dpkg/lock-frontend"
+
     - name: Disable unattended-upgrades package
       apt:
         name: unattended-upgrades
