@@ -3,7 +3,7 @@
 #Ansible playbook that performs various system cleaning tasks on Ubuntu Linux, including removing unnecessary packages, cleaning the APT cache, removing old kernels, cleaning thumbnail cache, and clearing systemd journal logs:
 
 - name: Clean Ubuntu system
-  hosts: your_target_host
+  hosts: all
   become: yes
 
   tasks:
