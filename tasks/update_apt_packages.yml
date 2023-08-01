@@ -5,10 +5,10 @@
   become: yes
   tasks:
 
-    - name: Remove apt lock file
-      file:
-        state: absent
-        path: "/var/lib/dpkg/lock-frontend"
+#    - name: Remove apt lock file
+#      file:
+#        state: absent
+#        path: "/var/lib/dpkg/lock-frontend"
 
     - name: Update package cache
       apt:
